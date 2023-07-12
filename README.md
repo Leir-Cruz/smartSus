@@ -5,6 +5,8 @@ Dashboard de gerenciamento de dados do sistema única de saúde.
 
 figma link:
 
+[link avaliação 3](https://docs.google.com/document/d/12p76yPck3DUdVHmIkHKygV835GlPi5c2/edit)
+
 [link do trello](https://trello.com/b/PLOmuvlP/o-mel-do-guibson)
 
 ### alunos
