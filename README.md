@@ -14,6 +14,13 @@ figma link:
 "insert name and student code here"
 
 - Gabriel Cruz Vaz Santos - 200049038
+- Ana Carine de Azevedo Salomão - 140034692
+- Daniel Pereira Damasceno - 190104805
+- Renato Pedro da Silva Júnior - 202063640
+- Heron Ferrari Araujo - 202063687
+- Kallebe de Sousa Silva - 180053485
+- João
+- Samy Nsenda Milambu - 190023210
 
 # Install Dependencies
 
