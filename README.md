@@ -38,6 +38,10 @@ In the project directory, you can run:
 
 ### `yarn dev`
 
+in another terminal but in the same directory run:
+
+### `yarn json-server --watch db.json --port 5000`
+
 # Add Dependency
 
 In the project directory, you can run:
