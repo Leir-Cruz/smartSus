@@ -40,7 +40,7 @@ In the project directory, you can run:
 
 in another terminal but in the same directory run:
 
-### `yarn json-server --watch db.json --port 5000`
+### `yarn json-server --watch ./src/services/db.json --port 5000`
 
 # Add Dependency
 

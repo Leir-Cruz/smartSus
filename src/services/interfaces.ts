@@ -10,7 +10,7 @@ export type TCurrFilters = {
   sintomas: string;
   outrosSintomas: string;
 };
-
+//todo finish this
 interface ISource {
   dataNascimento: Date;
   dataNotificacao: Date;
