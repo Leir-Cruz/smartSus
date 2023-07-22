@@ -1,6 +1,8 @@
 import { Box, styled, Typography } from '@mui/material';
 import { useState } from 'react';
+import { Cell, Pie, PieChart } from 'recharts';
 
+import { MyPieChart } from '../components/Charts/pie';
 import { PageContainer } from '../components/containers/pageContainer';
 import { Filters } from '../components/Drawer/filters';
 import { MainTable } from '../components/Tables/mainTable';
@@ -52,6 +54,14 @@ const Container = styled(Box)(() => ({
     alignItems: 'center',
     alignSelf: 'stretch',
   },
+
+  '& .graphContainer': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '10px 60px',
+    width: 'calc(100% - 120px)',
+  },
 }));
 
 export const Homepage = () => {
@@ -74,6 +84,11 @@ export const Homepage = () => {
             setRawSource={setRawSource}
           />
         </Box>
+        {currFilters && (
+          <Box className="graphContainer">
+            <MyPieChart totalNumber={rawSource.length} sampleNumber={source.length} />
+          </Box>
+        )}
       </Container>
     </PageContainer>
   );
