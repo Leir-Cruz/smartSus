@@ -1,6 +1,5 @@
 import { Box, styled, Typography } from '@mui/material';
 import { useState } from 'react';
-import { Cell, Pie, PieChart } from 'recharts';
 
 import { MyPieChart } from '../components/Charts/pie';
 import { PageContainer } from '../components/containers/pageContainer';

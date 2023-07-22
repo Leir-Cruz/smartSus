@@ -71,17 +71,17 @@ interface IFilters {
   currFilters: TCurrFilters;
   setCurrFilters: React.Dispatch<React.SetStateAction<TCurrFilters>>;
 }
-
+//todo add sex filter
 export const Filters = ({ currFilters, setCurrFilters }: IFilters) => {
   const [open, setOpen] = useState<boolean>(false);
   const [selectedResult, setSelectedResult] = useState<string>('');
-  const [selectedSex, setSelectedSex] = useState<string>('');
+  //const [selectedSex, setSelectedSex] = useState<string>('');
   const [selectedTestType, setSelectedTestType] = useState<string[]>([]);
   const [selectedSintomn, setSelectedSintomn] = useState<string>('');
 
   useEffect(() => {
     if (currFilters) {
-      setSelectedSex(currFilters.sexo);
+      //setSelectedSex(currFilters.sexo);
       setSelectedTestType(currFilters.tipoTeste);
       setSelectedResult(currFilters.resultadoTeste);
       setSelectedSintomn(currFilters.sintomas);
@@ -91,7 +91,7 @@ export const Filters = ({ currFilters, setCurrFilters }: IFilters) => {
   const handleClick = () => {
     if (!currFilters) {
       setSelectedResult('');
-      setSelectedSex('');
+      //setSelectedSex('');
       setSelectedTestType([]);
       setSelectedSintomn('');
     }
@@ -103,7 +103,7 @@ export const Filters = ({ currFilters, setCurrFilters }: IFilters) => {
       setCurrFilters((curr) => {
         return {
           ...curr,
-          sexo: selectedSex,
+          //sexo: selectedSex,
           resultadoTeste: selectedResult,
           tipoTeste: selectedTestType,
           sintomas: selectedSintomn,
@@ -144,14 +144,14 @@ export const Filters = ({ currFilters, setCurrFilters }: IFilters) => {
         <Typography className="title">Filtros</Typography>
         <Box className="filtersContainer">
           <FormGroup sx={{ overflowY: 'scroll', flexWrap: 'nowrap', width: '100%' }}>
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox />}
               label="Sexo Masculino"
               onChange={() => {
                 selectedSex.length ? setSelectedSex('') : setSelectedSex('M');
               }}
               checked={selectedSex.length > 0}
-            />
+            /> */}
             <FormControlLabel
               control={<Checkbox />}
               label="Teste PCR"

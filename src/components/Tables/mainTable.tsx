@@ -44,7 +44,7 @@ export const MainTable = ({
     } else {
       setSource(
         rawSource.filter((src) => {
-          if (currFilters.sexo.length && src.sexo == currFilters.sexo) return true;
+          //todo add sex filter
           if (currFilters.tipoTeste.length > 0 && currFilters.resultadoTeste.length) {
             if (
               currFilters.tipoTeste.includes(src.tipoTeste) &&

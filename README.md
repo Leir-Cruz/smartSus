@@ -56,6 +56,7 @@ In the project directory, you can run:
 - Filters Drawer
 - PopUp
 - MainTable
+- MyPieChart
 
 ### Pages
 
