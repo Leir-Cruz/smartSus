@@ -1,8 +1,9 @@
 import { Box, styled, Typography } from '@mui/material';
 
+import marca from '../../assets/marca.png';
 const Container = styled(Box)(() => ({
   display: 'flex',
-  padding: '16px',
+  padding: '8px 16px',
   width: 'calc(100% -32px)',
   justifyContent: 'flex-start',
   alignItems: 'center',
@@ -10,13 +11,9 @@ const Container = styled(Box)(() => ({
   alignSelf: 'stretch',
   backgroundColor: '#fff',
   borderBottom: '1px solid #F0EDEE',
-  '& .title': {
-    color: '#F0EDEE',
-    fontSize: '20px',
-    fontFamily: 'Archivo',
-    fontStyle: 'normal',
-    fontWeight: 600,
-    lineHeight: 'normal',
+  '& img': {
+    width: '250px',
+    height: '40px',
 
     '&:hover': {
       cursor: 'pointer',
@@ -36,7 +33,7 @@ const Container = styled(Box)(() => ({
 export const Header = () => {
   return (
     <Container>
-      <Typography className="title">SmartSus</Typography>
+      <img src={marca} alt="marca" />
       <Typography className="subTitle">Facilite a visualização de seus dados!</Typography>
     </Container>
   );
