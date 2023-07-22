@@ -35,41 +35,29 @@ export const MainTable = ({ currFilters }: IMainTable) => {
     if (!currFilters && rawSource) {
       setSource(rawSource);
     } else {
-      console.log('entrei', currFilters);
-      console.log('entrei', rawSource);
-      console.log(
-        'isso',
-        rawSource.filter((src) => {
-          if (
-            currFilters.sintomas.length > 0 &&
-            !src.sintomas.includes(currFilters.sintomas)
-          )
-            return false;
-          if (currFilters.sexo.length && src.sexo != currFilters.sexo) return false;
-          if (currFilters.tipoTeste.length && src.tipoTeste == currFilters.tipoTeste)
-            return true;
-          if (
-            currFilters.estadoTeste.length &&
-            src.estadoTeste == currFilters.estadoTeste
-          )
-            return true;
-        }),
-      );
+      console.log('entrei fff', currFilters);
+      console.log('entrei rr', rawSource);
       setSource(
         rawSource.filter((src) => {
-          if (
-            currFilters.sintomas.length > 0 &&
-            !src.sintomas.includes(currFilters.sintomas)
-          )
-            return false;
-          if (currFilters.sexo.length && src.sexo != currFilters.sexo) return false;
-          if (currFilters.tipoTeste.length && src.tipoTeste == currFilters.tipoTeste)
-            return true;
-          if (
-            currFilters.estadoTeste.length &&
-            src.estadoTeste == currFilters.estadoTeste
-          )
-            return true;
+          if (currFilters.sexo.length && src.sexo == currFilters.sexo) return true;
+          if (currFilters.tipoTeste.length > 0 && currFilters.resultadoTeste.length) {
+            if (
+              currFilters.tipoTeste.includes(src.tipoTeste) &&
+              src.resultadoTeste == currFilters.resultadoTeste
+            )
+              return true;
+          } else {
+            if (
+              currFilters.tipoTeste.length > 0 &&
+              currFilters.tipoTeste.includes(src.tipoTeste)
+            )
+              return true;
+            if (
+              currFilters.resultadoTeste.length &&
+              src.resultadoTeste == currFilters.resultadoTeste
+            )
+              return true;
+          }
         }),
       );
     }

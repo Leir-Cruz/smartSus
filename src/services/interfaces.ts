@@ -5,7 +5,7 @@ export type TCurrFilters = {
   //dataInicioSintomas: Date;
   //dataTeste: Date;
   sexo: string;
-  estadoTeste: string;
+  resultadoTeste: string;
   tipoTeste: string[];
   //nomeCompleto: string;
   sintomas: string;
@@ -41,6 +41,6 @@ interface ISource {
   sintomas: '';
   outrosSintomas: '';
   condicoes: '';
-  estadoTeste: '';
+  resultadoTeste: '';
   tipoTeste: '';
 }

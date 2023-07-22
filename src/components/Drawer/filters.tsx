@@ -83,7 +83,7 @@ export const Filters = ({ currFilters, setCurrFilters }: IFilters) => {
     if (currFilters) {
       setSelectedSex(currFilters.sexo);
       setSelectedTestType(currFilters.tipoTeste);
-      setSelectedResult(currFilters.estadoTeste);
+      setSelectedResult(currFilters.resultadoTeste);
       setSelectedSintomn(currFilters.sintomas);
     }
   }, [currFilters]);
@@ -105,7 +105,7 @@ export const Filters = ({ currFilters, setCurrFilters }: IFilters) => {
         return {
           ...curr,
           sexo: selectedSex,
-          estadoTeste: selectedResult,
+          resultadoTeste: selectedResult,
           tipoTeste: selectedTestType,
           sintomas: selectedSintomn,
         };
@@ -117,15 +117,16 @@ export const Filters = ({ currFilters, setCurrFilters }: IFilters) => {
 
   const handleResetFilters = () => {
     try {
-      setCurrFilters((curr) => {
+      /*       setCurrFilters((curr) => {
         return {
           ...curr,
           sexo: '',
-          estadoTeste: '',
+          resultadoTeste: '',
           tipoTeste: [],
           sintomas: '',
         };
-      });
+      }); */
+      setCurrFilters(null);
     } finally {
       setOpen(false);
     }
@@ -146,45 +147,46 @@ export const Filters = ({ currFilters, setCurrFilters }: IFilters) => {
           <FormGroup sx={{ overflowY: 'scroll', flexWrap: 'nowrap', width: '100%' }}>
             <FormControlLabel
               control={<Checkbox />}
-              label="Apenas Sexo Masculino"
-              onClick={() => {
+              label="Sexo Masculino"
+              onChange={() => {
                 selectedSex.length ? setSelectedSex('') : setSelectedSex('M');
               }}
+              checked={selectedSex.length > 0}
             />
             <FormControlLabel
               control={<Checkbox />}
-              label="Apenas Teste PCR"
-              onClick={() => {
-                selectedSex.includes('PCR')
+              label="Teste PCR"
+              onChange={() => {
+                selectedTestType.includes('PCR')
                   ? setSelectedTestType(selectedTestType.filter((tt) => tt != 'PCR'))
                   : setSelectedTestType([...selectedTestType, 'PCR']);
               }}
+              checked={selectedTestType.includes('PCR')}
             />
             <FormControlLabel
               control={<Checkbox />}
-              label="Apenas Teste Antígeno"
-              onClick={() => {
-                selectedSex.includes('PCR')
+              label="Teste Antígeno"
+              onChange={() => {
+                selectedTestType.includes('Antígeno')
                   ? setSelectedTestType(selectedTestType.filter((tt) => tt != 'Antígeno'))
                   : setSelectedTestType([...selectedTestType, 'Antígeno']);
               }}
+              checked={selectedTestType.includes('Antígeno')}
             />
             <FormControlLabel
               control={<Checkbox />}
               label="Apenas Resultado Positivo"
-              onClick={() => {
-                selectedSex.length
+              onChange={() => {
+                selectedResult.length
                   ? setSelectedResult('')
                   : setSelectedResult('Positivo');
               }}
+              checked={selectedResult.length > 0}
             />
             {/*  //todo
                         <FormControlLabel
               control={<Checkbox />}
               label="Apenas Sintoma inclui Febre"
-              onClick={() => {
-                selectedSex.length ? setSelectedSex('') : setSelectedSex('M');
-              }}
             /> */}
           </FormGroup>
         </Box>

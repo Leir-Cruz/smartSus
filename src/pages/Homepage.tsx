@@ -64,7 +64,7 @@ export const Homepage = () => {
           <Filters currFilters={currFilters} setCurrFilters={setCurrFilters} />
         </Box>
         <Box className="tableContainer">
-          <MainTable currFilters={currFilters} setCurrFilters={setCurrFilters} />
+          <MainTable currFilters={currFilters} />
         </Box>
       </Container>
     </PageContainer>
