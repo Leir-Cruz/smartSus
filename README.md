@@ -52,11 +52,14 @@ In the project directory, you can run:
 
 ### components
 
-"insert components here"
+- PageContainer
+- Filters Drawer
+- PopUp
+- MainTable
 
 ### Pages
 
-"insert pages here"
+- HomePage
 
 # Extra
 
