@@ -56,6 +56,8 @@ const Container = styled(Box)(() => ({
 
 export const Homepage = () => {
   const [currFilters, setCurrFilters] = useState<TCurrFilters>(null);
+  const [source, setSource] = useState<any[]>([]);
+  const [rawSource, setRawSource] = useState<any[]>([]);
   return (
     <PageContainer>
       <Container>
@@ -64,7 +66,13 @@ export const Homepage = () => {
           <Filters currFilters={currFilters} setCurrFilters={setCurrFilters} />
         </Box>
         <Box className="tableContainer">
-          <MainTable currFilters={currFilters} />
+          <MainTable
+            currFilters={currFilters}
+            source={source}
+            setSource={setSource}
+            rawSource={rawSource}
+            setRawSource={setRawSource}
+          />
         </Box>
       </Container>
     </PageContainer>

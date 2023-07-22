@@ -12,11 +12,19 @@ import { TCurrFilters } from '../../services/interfaces';
 
 interface IMainTable {
   currFilters: TCurrFilters;
+  source: any[];
+  setSource: React.Dispatch<React.SetStateAction<any[]>>;
+  rawSource: any[];
+  setRawSource: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
-export const MainTable = ({ currFilters }: IMainTable) => {
-  const [source, setSource] = useState<any[]>([]);
-  const [rawSource, setRawSource] = useState<any[]>([]);
+export const MainTable = ({
+  currFilters,
+  source,
+  setSource,
+  rawSource,
+  setRawSource,
+}: IMainTable) => {
   useEffect(() => {
     api
       .get('/source')
