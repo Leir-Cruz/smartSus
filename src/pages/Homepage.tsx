@@ -1,8 +1,10 @@
-import { Box, Button, styled, Typography } from '@mui/material';
+import { Box, styled, Typography } from '@mui/material';
+import { useState } from 'react';
 
 import { PageContainer } from '../components/containers/pageContainer';
 import { Filters } from '../components/Drawer/filters';
-import { MainTabel } from '../components/Tables/mainTable';
+import { MainTable } from '../components/Tables/mainTable';
+import { TCurrFilters } from '../services/interfaces';
 
 const Container = styled(Box)(() => ({
   display: 'flex',
@@ -53,15 +55,16 @@ const Container = styled(Box)(() => ({
 }));
 
 export const Homepage = () => {
+  const [currFilters, setCurrFilters] = useState<TCurrFilters>(null);
   return (
     <PageContainer>
       <Container>
         <Box className="headerContainer">
           <Typography>Nossos dados</Typography>
-          <Filters />
+          <Filters currFilters={currFilters} setCurrFilters={setCurrFilters} />
         </Box>
         <Box className="tableContainer">
-          <MainTabel />
+          <MainTable currFilters={currFilters} setCurrFilters={setCurrFilters} />
         </Box>
       </Container>
     </PageContainer>

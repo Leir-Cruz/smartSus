@@ -567,7 +567,7 @@
       "sexo": "F",
       "racaCor": "Parda",
       "passaporte": null,
-     "cep": "09876-543",
+      "cep": "09876-543",
       "logradouro": "Rua das Palmeiras",
       "numero": "654",
       "complemento": "",
@@ -1566,7 +1566,7 @@
       "municipio": "Rio de Janeiro",
       "telefoneContato": "987654321",
       "telefone": null,
-    "sintomas": "Febre, Dor de cabeça, Tosse",
+      "sintomas": "Febre, Dor de cabeça, Tosse",
       "outrosSintomas": "Dor abdominal",
       "condicoes": null,
       "estadoTeste": "Negativo",
@@ -2038,7 +2038,7 @@
           }
         }
       ],
-      "id":"19",
+      "id": "19",
       "idCollection": "",
       "evolucaoCaso": null,
       "dataEncerramento": null,
@@ -2199,6 +2199,6 @@
       "@timestamp": "",
       "idade": 35,
       "classificacaoFinal": null
-    }    
+    }
   ]
 }

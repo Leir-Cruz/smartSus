@@ -1,14 +1,15 @@
+//todo add missing filters
 export type TCurrFilters = {
-  dataNascimento: Date;
-  dataNotificacao: Date;
-  dataInicioSintomas: Date;
-  dataTeste: Date;
+  //dataNascimento: Date;
+  //dataNotificacao: Date;
+  //dataInicioSintomas: Date;
+  //dataTeste: Date;
   sexo: string;
   estadoTeste: string;
-  tipoTeste: string;
-  nomeCompleto: string;
+  tipoTeste: string[];
+  //nomeCompleto: string;
   sintomas: string;
-  outrosSintomas: string;
+  //outrosSintomas: string;
 };
 //todo finish this
 interface ISource {

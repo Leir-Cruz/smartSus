@@ -8,21 +8,72 @@ import TableRow from '@mui/material/TableRow';
 import { useEffect, useState } from 'react';
 
 import { api } from '../../services/api';
+import { TCurrFilters } from '../../services/interfaces';
 
-export const MainTabel = () => {
+interface IMainTable {
+  currFilters: TCurrFilters;
+}
+
+export const MainTable = ({ currFilters }: IMainTable) => {
   const [source, setSource] = useState<any[]>([]);
+  const [rawSource, setRawSource] = useState<any[]>([]);
   useEffect(() => {
     api
       .get('/source')
       .then((response) => {
-        setSource(response.data);
+        setRawSource(response.data);
         console.log('response', response);
       })
       .catch((e) => {
-        setSource([]);
+        setRawSource([]);
         console.log('error', e);
       });
   }, []);
+
+  useEffect(() => {
+    console.log('curr2', currFilters);
+    if (!currFilters && rawSource) {
+      setSource(rawSource);
+    } else {
+      console.log('entrei', currFilters);
+      console.log('entrei', rawSource);
+      console.log(
+        'isso',
+        rawSource.filter((src) => {
+          if (
+            currFilters.sintomas.length > 0 &&
+            !src.sintomas.includes(currFilters.sintomas)
+          )
+            return false;
+          if (currFilters.sexo.length && src.sexo != currFilters.sexo) return false;
+          if (currFilters.tipoTeste.length && src.tipoTeste == currFilters.tipoTeste)
+            return true;
+          if (
+            currFilters.estadoTeste.length &&
+            src.estadoTeste == currFilters.estadoTeste
+          )
+            return true;
+        }),
+      );
+      setSource(
+        rawSource.filter((src) => {
+          if (
+            currFilters.sintomas.length > 0 &&
+            !src.sintomas.includes(currFilters.sintomas)
+          )
+            return false;
+          if (currFilters.sexo.length && src.sexo != currFilters.sexo) return false;
+          if (currFilters.tipoTeste.length && src.tipoTeste == currFilters.tipoTeste)
+            return true;
+          if (
+            currFilters.estadoTeste.length &&
+            src.estadoTeste == currFilters.estadoTeste
+          )
+            return true;
+        }),
+      );
+    }
+  }, [currFilters, rawSource]);
 
   return (
     <TableContainer component={Paper}>

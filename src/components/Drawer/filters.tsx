@@ -8,7 +8,9 @@ import {
   styled,
   Typography,
 } from '@mui/material';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { TCurrFilters } from '../../services/interfaces';
 
 const Container = styled(Drawer)(() => ({
   '& .MuiPaper-root': {
@@ -65,11 +67,68 @@ const Container = styled(Drawer)(() => ({
   },
 }));
 
-export const Filters = () => {
+interface IFilters {
+  currFilters: TCurrFilters;
+  setCurrFilters: React.Dispatch<React.SetStateAction<TCurrFilters>>;
+}
+
+export const Filters = ({ currFilters, setCurrFilters }: IFilters) => {
   const [open, setOpen] = useState<boolean>(false);
+  const [selectedResult, setSelectedResult] = useState<string>('');
+  const [selectedSex, setSelectedSex] = useState<string>('');
+  const [selectedTestType, setSelectedTestType] = useState<string[]>([]);
+  const [selectedSintomn, setSelectedSintomn] = useState<string>('');
+
+  useEffect(() => {
+    if (currFilters) {
+      setSelectedSex(currFilters.sexo);
+      setSelectedTestType(currFilters.tipoTeste);
+      setSelectedResult(currFilters.estadoTeste);
+      setSelectedSintomn(currFilters.sintomas);
+    }
+  }, [currFilters]);
 
   const handleClick = () => {
-    setOpen(!open);
+    if (!currFilters) {
+      setSelectedResult('');
+      setSelectedSex('');
+      setSelectedTestType([]);
+      setSelectedSintomn('');
+    }
+    console.log('cuur', currFilters);
+    setOpen(true);
+  };
+
+  const handleApplyFilter = () => {
+    try {
+      setCurrFilters((curr) => {
+        return {
+          ...curr,
+          sexo: selectedSex,
+          estadoTeste: selectedResult,
+          tipoTeste: selectedTestType,
+          sintomas: selectedSintomn,
+        };
+      });
+    } finally {
+      setOpen(false);
+    }
+  };
+
+  const handleResetFilters = () => {
+    try {
+      setCurrFilters((curr) => {
+        return {
+          ...curr,
+          sexo: '',
+          estadoTeste: '',
+          tipoTeste: [],
+          sintomas: '',
+        };
+      });
+    } finally {
+      setOpen(false);
+    }
   };
 
   const handleClose = () => {
@@ -87,40 +146,57 @@ export const Filters = () => {
           <FormGroup sx={{ overflowY: 'scroll', flexWrap: 'nowrap', width: '100%' }}>
             <FormControlLabel
               control={<Checkbox />}
-              label="Sexo Masculino"
-              onClick={() => handleClick()}
+              label="Apenas Sexo Masculino"
+              onClick={() => {
+                selectedSex.length ? setSelectedSex('') : setSelectedSex('M');
+              }}
             />
             <FormControlLabel
               control={<Checkbox />}
-              label="Teste PCR"
-              onClick={() => handleClick()}
+              label="Apenas Teste PCR"
+              onClick={() => {
+                selectedSex.includes('PCR')
+                  ? setSelectedTestType(selectedTestType.filter((tt) => tt != 'PCR'))
+                  : setSelectedTestType([...selectedTestType, 'PCR']);
+              }}
             />
             <FormControlLabel
               control={<Checkbox />}
-              label="Teste Antígeno"
-              onClick={() => handleClick()}
+              label="Apenas Teste Antígeno"
+              onClick={() => {
+                selectedSex.includes('PCR')
+                  ? setSelectedTestType(selectedTestType.filter((tt) => tt != 'Antígeno'))
+                  : setSelectedTestType([...selectedTestType, 'Antígeno']);
+              }}
             />
             <FormControlLabel
               control={<Checkbox />}
-              label="Resultado Positivo"
-              onClick={() => handleClick()}
+              label="Apenas Resultado Positivo"
+              onClick={() => {
+                selectedSex.length
+                  ? setSelectedResult('')
+                  : setSelectedResult('Positivo');
+              }}
             />
-            <FormControlLabel
+            {/*  //todo
+                        <FormControlLabel
               control={<Checkbox />}
-              label="Sintoma inclui Febre"
-              onClick={() => handleClick()}
-            />
+              label="Apenas Sintoma inclui Febre"
+              onClick={() => {
+                selectedSex.length ? setSelectedSex('') : setSelectedSex('M');
+              }}
+            /> */}
           </FormGroup>
         </Box>
         <Box className="buttons">
-          <Button variant="contained" color="primary" onClick={handleClose}>
+          <Button variant="contained" color="primary" onClick={handleResetFilters}>
             Resetar Filtro
           </Button>
           <Box className="buttonApply" onClick={handleClose}>
             <Button variant="contained" color="error" sx={{ marginLeft: '18px' }}>
               Cancelar
             </Button>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={handleApplyFilter}>
               Aplicar
             </Button>
           </Box>
