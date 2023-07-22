@@ -95,7 +95,6 @@ export const Filters = ({ currFilters, setCurrFilters }: IFilters) => {
       setSelectedTestType([]);
       setSelectedSintomn('');
     }
-    console.log('cuur', currFilters);
     setOpen(true);
   };
 

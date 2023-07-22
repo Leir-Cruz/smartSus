@@ -31,12 +31,9 @@ export const MainTable = ({ currFilters }: IMainTable) => {
   }, []);
 
   useEffect(() => {
-    console.log('curr2', currFilters);
     if (!currFilters && rawSource) {
       setSource(rawSource);
     } else {
-      console.log('entrei fff', currFilters);
-      console.log('entrei rr', rawSource);
       setSource(
         rawSource.filter((src) => {
           if (currFilters.sexo.length && src.sexo == currFilters.sexo) return true;
